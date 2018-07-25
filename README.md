@@ -20,6 +20,6 @@ Project Structure
 | .eslintrc                          | Rules for eslint linter.                                     |
 | .gitignore                         | Folder and files ignored by git.                             |
 | .travis.yml                        | Configuration files for continue integration.                |
-| index.js                           | The main application file.                                   |
+| app.js                             | The main application file.                                   |
 | package.json                       | NPM dependencies.                                            |
 | package-lock.json                  | Contains exact versions of NPM dependencies in package.json. |

@@ -2,7 +2,7 @@
   "name": "journey-planner",
   "version": "0.0.0",
   "description": "Keeping your peeps informed about where you're gonna be, who you're gonna be with, and how you're getting around. ",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "doc": "docs"
   },
