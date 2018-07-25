@@ -1,0 +1,25 @@
+{
+  "name": "journey-planner",
+  "version": "0.0.0",
+  "description": "Keeping your peeps informed about where you're gonna be, who you're gonna be with, and how you're getting around. ",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swoloszynski/journey-planner.git"
+  },
+  "author": "Sam Woloszynski and Ben Travis",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/swoloszynski/journey-planner/issues"
+  },
+  "homepage": "https://github.com/swoloszynski/journey-planner#readme",
+  "dependencies": {
+    "yarn": "1.7.0"
+  }
+}
