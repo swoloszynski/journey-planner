@@ -5,3 +5,8 @@ Set up
 ------
 
 Follow instructions in [Install doc](../INSTALL.md).
+
+```
+(journey-planner) $ yarn
+(journey-planner) $ npm start
+```
