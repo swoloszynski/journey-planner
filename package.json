@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha test",
+    "test": "NODE_ENV=test mocha --exit test",
     "start": "node app.js"
   },
   "repository": {
