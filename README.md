@@ -11,6 +11,13 @@ Follow instructions in [Install doc](../INSTALL.md).
 (journey-planner) $ npm start
 ```
 
+Running tests
+-------------
+
+```
+(journey-planner) $ npm test
+```
+
 Project Structure
 -----------------
 
