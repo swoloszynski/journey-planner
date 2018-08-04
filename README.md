@@ -7,6 +7,7 @@ Set up
 Follow instructions in [Install doc](../INSTALL.md).
 
 ```
+(journey-planner) $ nvm use
 (journey-planner) $ yarn
 (journey-planner) $ npm start
 ```
