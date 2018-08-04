@@ -21,12 +21,16 @@
   },
   "homepage": "https://github.com/swoloszynski/journey-planner#readme",
   "nodemonConfig": {
-    "ignore": ["test/*", "docs/*"],
+    "ignore": [
+      "test/*",
+      "docs/*"
+    ],
     "delay": "1500"
   },
   "dependencies": {
     "dotenv": "6.0.0",
     "express": "4.16.3",
+    "sequelize": "4.38.0",
     "yarn": "1.7.0"
   },
   "devDependencies": {
