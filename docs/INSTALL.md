@@ -11,3 +11,54 @@ Install
 -------
 
 - `$ yarn`
+
+Database set up (local)
+---------------
+
+- Install MySQL
+
+```
+$ brew update
+$ brew install mysql
+```
+
+- Start MySQL and set a password
+
+```
+$ brew services start mysql
+$ mysqladmin -u root password 'password'
+```
+
+- If you get an error message like this:
+
+```
+$ mysqladmin: unable to change password; error: 'Column count of mysql.user is wrong. Expected 45, found 43. Created with MySQL 50622, now running 50718. Please use mysql_upgrade to fix this error.'
+```
+
+- Upgrade mysql:
+
+```
+$ mysql_upgrade --force -uroot # if you have a password, add -p <yourpassword>
+```
+
+- Then rerun password command.
+- Download SequelPro and connect:
+
+```
+Name: Journey Planner Local
+Host: 127.0.0.1
+Username: root
+Password: password
+Database: Leave blank
+Port: Leave blank
+```
+
+- In SequelPro, test the connection, save as a favorite if successful, and then connect.
+- Click Database > Add Database.
+
+```
+Name: `journey_planner_database`
+Database Encoding: utf8
+Database Collation: utf8_general_ci
+```
+
