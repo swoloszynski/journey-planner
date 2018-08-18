@@ -8,22 +8,30 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING
+      username: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
       },
-      lastName: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      email: {
-        type: Sequelize.STRING
+      notes: {
+        type: Sequelize.TEXT
+      },
+      contact: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()')
       }
     });
   },
