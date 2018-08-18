@@ -1,4 +1,14 @@
-# Database commands quick reference
+# Database quick reference
+
+## References & Tutorials
+- [Introduction](http://www.duringthedrive.com/2017/05/06/models-migrations-sequelize-node/)
+- [Intro to Migrations Tutorial](http://gregtrowbridge.com/getting-started-with-sequelize-and-the-sequelize-cli/)
+- [Sequelize Docs](https://sequelize.readthedocs.io/en/v3/)
+- [Sequelize Tutorial Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
+- [Node.js Database Set Up Tutorial](https://hackernoon.com/setting-up-node-js-with-a-database-part-1-3f2461bdd77f)
+- [Node.js, Express, and Postgres Tutorial](https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize#generating-models)
+
+## Useful Commands
 
 - [Sequelize Reference](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
 
@@ -8,6 +18,21 @@
 
 ```
 $ sequelize model:generate --name ModelName --attributes field1:string,field2:string
+```
+
+- When adding a new model, update the auto-generated migration to include default values for the `createdAt` and `updatedAt` fields:
+
+```
+createdAt: {
+  allowNull: false,
+  type: Sequelize.DATE,
+  defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
+},
+updatedAt: {
+  allowNull: false,
+  type: Sequelize.DATE,
+  defaultValue: Sequelize.literal('CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()')
+}
 ```
 
 - Run a migration
