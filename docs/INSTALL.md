@@ -62,3 +62,4 @@ Database Encoding: utf8
 Database Collation: utf8_general_ci
 ```
 
+- Update config/config.json file with new databases
