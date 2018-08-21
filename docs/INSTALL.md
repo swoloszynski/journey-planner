@@ -42,7 +42,7 @@ $ mysql_upgrade --force -uroot # if you have a password, add -p <yourpassword>
 ```
 
 - Then rerun password command.
-- Download SequelPro and connect:
+- Download [SequelPro](https://www.sequelpro.com/) and connect:
 
 ```
 Name: Journey Planner Local
