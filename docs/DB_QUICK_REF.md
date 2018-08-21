@@ -1,16 +1,14 @@
 # Database quick reference
 
 ## References & Tutorials
-- [Introduction](http://www.duringthedrive.com/2017/05/06/models-migrations-sequelize-node/)
-- [Intro to Migrations Tutorial](http://gregtrowbridge.com/getting-started-with-sequelize-and-the-sequelize-cli/)
+
 - [Sequelize Docs](https://sequelize.readthedocs.io/en/v3/)
-- [Sequelize Tutorial Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
-- [Node.js Database Set Up Tutorial](https://hackernoon.com/setting-up-node-js-with-a-database-part-1-3f2461bdd77f)
-- [Node.js, Express, and Postgres Tutorial](https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize#generating-models)
+- [Introduction to ORMs](http://www.duringthedrive.com/2017/05/06/models-migrations-sequelize-node/)
+- [Sequelize Tutorial on Migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
+- [Project Set Up Tutorial - Node.js, Express, and Knex](https://hackernoon.com/setting-up-node-js-with-a-database-part-1-3f2461bdd77f)
+- [Project Set Up Tutorial - Node.js, Express, and Postgres](https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize#generating-models)
 
 ## Useful Commands
-
-- [Sequelize Reference](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
 
 ## Migrations for new models using Sequelize-CLI
 
