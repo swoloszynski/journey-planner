@@ -13,6 +13,7 @@ module.exports = (app) => {
     res.end('Hello World!');
   })
 
+  // Catch-all route must be last
   app.get('*', function (req, res) {
     res.statusCode = 404;
     res.setHeader('Content-Type', 'text/plain');
