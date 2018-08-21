@@ -12,4 +12,10 @@ module.exports = (app) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello World!');
   })
+
+  app.get('*', function (req, res) {
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('404: Oops! Route note found.');
+  })
 };
