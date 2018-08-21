@@ -57,7 +57,7 @@ Port: Leave blank
 - Click Database > Add Database.
 
 ```
-Name: `journey_planner_database`
+Name: `journey_planner_dev`
 Database Encoding: utf8
 Database Collation: utf8_general_ci
 ```
