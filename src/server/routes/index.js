@@ -6,6 +6,7 @@ module.exports = (app) => {
   }));
 
   app.post('/api/users', usersController.create);
+  app.get('/api/users', usersController.list);
 
   app.get('/app', function (req, res) {
     res.statusCode = 200;
