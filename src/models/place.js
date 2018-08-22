@@ -1,7 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Place = sequelize.define('Place', {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     location: DataTypes.STRING,
     url: DataTypes.STRING,
     notes: DataTypes.TEXT
