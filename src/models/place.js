@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     notes: DataTypes.TEXT
   }, {});
   Place.associate = function(models) {
-    // associations can be defined here
+    models.Place.belongsTo(models.User);
   };
   return Place;
 };
