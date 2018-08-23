@@ -4,7 +4,7 @@ Trugley, your favorite travel app for telling people where you're gonna be, who 
 Set up
 ------
 
-Follow instructions in [Install doc](../INSTALL.md).
+Follow instructions in [Install doc](./docs/INSTALL.md).
 
 ```
 (journey-planner) $ nvm use

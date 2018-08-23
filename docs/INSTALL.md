@@ -10,7 +10,10 @@ Prereqs
 Install
 -------
 
-- `$ yarn`
+```
+$ nvm use
+$ yarn
+```
 
 Database set up (local)
 ---------------
