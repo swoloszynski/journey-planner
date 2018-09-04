@@ -32,6 +32,8 @@ $ brew services start mysql
 $ mysqladmin -u root password 'password'
 ```
 
+Note that if running mysql for the first time from Homebrew, you may need to run `mysql_secure_installation` and follow the secure installation process to progress.
+
 - If you get an error message like this:
 
 ```
