@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/swoloszynski/journey-planner.svg?branch=master)](https://travis-ci.com/swoloszynski/journey-planner)
+
 # journey-planner
 Trugley, your favorite travel app for telling people where you're gonna be, who you're gonna be with, and how you're gonna get there.
 
