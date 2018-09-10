@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     notes: DataTypes.TEXT,
     contact: DataTypes.TEXT
   }, {});
-  User.associate = function(models) {
+  User.associate = function(models) { /* jshint unused: false */
     // associations can be defined here
   };
   return User;
