@@ -7,3 +7,6 @@ cache:
   yarn: true
   directories:
   - node_modules
+before_install:
+- openssl aes-256-cbc -K $encrypted_2f6cb92c607d_key -iv $encrypted_2f6cb92c607d_iv
+  -in config.json.enc -out config/config.json -d
