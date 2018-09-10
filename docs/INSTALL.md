@@ -70,4 +70,4 @@ Database Collation: utf8_general_ci
 Travis CI Set Up
 ----------------
 
-- Follow [instructions for encrypting files](https://docs.travis-ci.com/user/encrypting-files/) to add config/config.json to Travis.
+- Follow [instructions for encrypting files](https://docs.travis-ci.com/user/encrypting-files/) to add config/config.json to Travis. Use the `--pro` flag when encrypting a file.
