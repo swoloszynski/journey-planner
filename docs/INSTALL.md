@@ -66,3 +66,8 @@ Database Collation: utf8_general_ci
 ```
 
 - Update config/config.json file with new databases
+
+Travis CI Set Up
+----------------
+
+- Follow [instructions for encrypting files](https://docs.travis-ci.com/user/encrypting-files/) to add config/config.json to Travis. Use the `--pro` flag when encrypting a file.
