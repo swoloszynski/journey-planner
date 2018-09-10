@@ -1,5 +1,6 @@
 {
     // Custom configs
+    "node"         : true,    // Node.js
     "esversion"    : 6,
 
     // JSHint Default Configuration File (as on JSHint website)
@@ -76,7 +77,6 @@
     "jquery"        : false,    // jQuery
     "mocha"         : true,     // Mocha
     "mootools"      : false,    // MooTools
-    "node"          : false,    // Node.js
     "nonstandard"   : false,    // Widely adopted globals (escape, unescape, etc)
     "phantom"       : false,    // PhantomJS
     "prototypejs"   : false,    // Prototype and Scriptaculous
