@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface, Sequelize) => { /* jshint unused: false */
       return queryInterface.bulkInsert('Places', [
         {
           name: 'London',
@@ -28,7 +28,7 @@ module.exports = {
       ], {});
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface, Sequelize) => { /* jshint unused: false */
       return queryInterface.bulkDelete('Places', null, {});
   }
 };

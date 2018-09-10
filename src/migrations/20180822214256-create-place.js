@@ -37,7 +37,7 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface, Sequelize) => { /* jshint unused: false */
     return queryInterface.dropTable('Places');
   }
 };

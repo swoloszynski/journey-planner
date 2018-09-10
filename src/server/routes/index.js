@@ -1,3 +1,5 @@
+'use strict';
+
 const usersController = require('../controllers').users;
 
 module.exports = (app) => {
@@ -13,12 +15,12 @@ module.exports = (app) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello World!');
-  })
+  });
 
   // Catch-all route must be last
   app.get('*', function (req, res) {
     res.statusCode = 404;
     res.setHeader('Content-Type', 'text/plain');
     res.end('404: Oops! Route note found.');
-  })
+  });
 };

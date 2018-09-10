@@ -2,7 +2,6 @@
 
 const request = require('supertest');
 const app = require('../app');
-const chai = require('chai');
 
 describe('GET /app', () => {
   it('should return 200 OK', (done) => {
@@ -19,7 +18,7 @@ describe('GET /api', () => {
       .get('/api')
       .expect(200)
       .expect({
-        message: "Welcome to the API!"
+        message: 'Welcome to the API!'
       })
       .end(done);
   });

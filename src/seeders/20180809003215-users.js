@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface, Sequelize) => { /* jshint unused: false */
       return queryInterface.bulkInsert('Users', [
         {
           username: 'btravs',
@@ -24,7 +24,7 @@ module.exports = {
       ], {});
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface, Sequelize) => { /* jshint unused: false */
       return queryInterface.bulkDelete('Users', null, {});
   }
 };
