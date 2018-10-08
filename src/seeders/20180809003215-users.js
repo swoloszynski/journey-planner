@@ -9,6 +9,7 @@ module.exports = {
           notes: null,
           contact: 'btravs@mail.com',
           email: 'btravs@email.com',
+          passwordHash: null,
         },
         {
           username: 'samwolo',
@@ -16,6 +17,7 @@ module.exports = {
           notes: null,
           contact: '+1 123 456 7890',
           email: 'samwolo@email.com',
+          passwordHash: null,
         },
         {
           username: 'ahmedmuhamo1',
@@ -23,6 +25,7 @@ module.exports = {
           notes: 'Deathly allergic to peanuts',
           contact: '+34 123 57 824',
           email: 'ahmed@email.com',
+          passwordHash: null,
         },
       ], {});
   },
