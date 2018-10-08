@@ -1,9 +1,16 @@
 'use strict';
 
+const config   = require('./config');
+const express  = require('express');
+const app      = express();
+const passport = require('passport');
+
+const morgan     = require('morgan');
 const bodyParser = require('body-parser');
-const express = require('express');
-const app = express();
-const config = require('./config');
+
+if (config.env === 'development') {
+  app.use(morgan('dev')); // log every request to the console
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
