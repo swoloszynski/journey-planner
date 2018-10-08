@@ -8,7 +8,7 @@ const passport = require('passport');
 const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
-const session      = require('express-session');
+// const session      = require('express-session');
 
 if (config.env === 'development') {
   app.use(morgan('dev')); // log every request to the console
@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // required for passport
-app.use(session({ secret: config.sessionSecret })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// app.use(session({ secret: config.sessionSecret })); // session secret
+// app.use(passport.initialize());
+// app.use(passport.session()); // persistent login sessions
 
 require('./src/server/routes')(app, passport);
 

@@ -3,10 +3,10 @@
 const request = require('supertest');
 const app = require('../app');
 
-describe('GET /app', () => {
+describe('GET /', () => {
   it('should return 200 OK', (done) => {
     request(app)
-      .get('/app')
+      .get('/')
       .expect(200)
       .end(done);
   });
@@ -24,10 +24,10 @@ describe('GET /api', () => {
   });
 });
 
-describe('GET /', () => {
+describe('GET /doesntexist', () => {
   it('should return 404 Not Found', (done) => {
     request(app)
-      .get('/')
+      .get('/doesntexist')
       .expect(404)
       .end(done);
   });
