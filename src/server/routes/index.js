@@ -27,6 +27,7 @@ module.exports = (app, passport) => { /* jshint unused: false */
   app.get('/login', function(req, res) {
     res.render('login', {
       title: 'JP Login',
+      message: req.flash('loginMessage'),
     });
   });
 
@@ -37,6 +38,7 @@ module.exports = (app, passport) => { /* jshint unused: false */
   app.get('/signup', function(req, res) {
     res.render('signup', {
       title: 'JP Signup',
+      message: req.flash('signupMessage'),
     });
   });
 
