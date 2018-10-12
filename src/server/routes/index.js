@@ -2,7 +2,7 @@
 
 const usersController = require('../controllers').users;
 
-module.exports = (app, passport) => { /* jshint unused: false */
+module.exports = (app) => { /* jshint unused: false */
   app.set('views', './src/views');
   app.set('view engine', 'pug');
 
@@ -23,54 +23,23 @@ module.exports = (app, passport) => { /* jshint unused: false */
     });
   });
 
-  // Login Page
-  app.get('/login', function(req, res) {
-    res.render('login', {
-      title: 'JP Login',
-      message: req.flash('loginMessage'),
-    });
-  });
+  // ------- AUTHENTICATION ROUTES ------- //
 
-  // Process the login form
-  // app.post('/login', passport fun here);
+  // --- Views --- //
 
-  // Signup page
-  app.get('/signup', function(req, res) {
-    res.render('signup', {
-      title: 'JP Signup',
-      message: req.flash('signupMessage'),
-    });
-  });
+  // Login form
 
-  // process the signup form
-  // app.post('/signup', passport fun here);
+  // Sign up form
 
-  // Profile page
-  // Protected page; requires login
-  // Route middleware isLoggedIn function will verify
-  app.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile', {
-      title: 'JP Profile',
-      user : req.user // get the user out of session and pass to template
-    });
-  });
+  // Profile view (authenticated users only)
 
-  // Logout
-  app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-  });
+  // --- Handle data --- //
 
-  // route middleware to make sure a user is logged in
-  function isLoggedIn(req, res, next) {
-    // if authenticated in the session, continue
-    if (req.isAuthenticated()) {
-      return next();
-    }
+  // Receive Login Submission
 
-    // if not, redirect to home page
-    res.redirect('/');
-  }
+  // Receive Signup Submission
+
+  // ------- END AUTHENTICATION ROUTES ------- //
 
   // Catch-all route must be last
   app.get('*', function (req, res) {
