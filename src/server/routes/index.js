@@ -28,8 +28,18 @@ module.exports = (app) => { /* jshint unused: false */
   // --- Views --- //
 
   // Login form
+  app.get('/login', function(req, res) {
+    res.render('login', {
+      title: 'JP Login',
+    });
+  });
 
   // Sign up form
+  app.get('/signup', function(req, res) {
+    res.render('signup', {
+      title: 'JP Signup',
+    });
+  });
 
   // Profile view (authenticated users only)
 
