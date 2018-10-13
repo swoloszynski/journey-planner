@@ -4,6 +4,7 @@ const config   = require('./config');
 const PORT     = config.port;
 const express  = require('express');
 const db       = require("./src/models");
+const routes   = require('./src/server/routes');
 
 const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -27,7 +28,7 @@ app.use(session({
 }));
 
 // Require routes
-require("./src/server/routes")(app);
+routes(app);
 
 // Run server and log database info
 db.sequelize.sync().then(function() {
