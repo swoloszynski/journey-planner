@@ -10,6 +10,8 @@ const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const session      = require('express-session');
+const passport     = require('passport');
+require('./config/passport')(passport);
 
 // Initialize app
 const app = express();
@@ -27,8 +29,12 @@ app.use(session({
   secret: config.sessionSecret,
 }));
 
+// Set up passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Require routes
-routes(app);
+routes(app, passport);
 
 // Run server and log database info
 db.sequelize.sync().then(function() {

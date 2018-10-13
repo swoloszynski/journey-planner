@@ -2,7 +2,7 @@
 
 const usersController = require('../controllers').users;
 
-module.exports = (app) => { /* jshint unused: false */
+module.exports = (app, passport) => { /* jshint unused: false */
   app.set('views', './src/views');
   app.set('view engine', 'pug');
 
@@ -48,14 +48,14 @@ module.exports = (app) => { /* jshint unused: false */
   // Receive Login Submission
 
   // Receive Signup Submission
-  // app.post('/signup',
-  //   passport.authenticate(
-  //     'local-signup',
-  //     {
-  //       successRedirect: '/',
-  //       failureRedirect: '/login',
-  //     })
-  // );
+  app.post('/signup',
+    passport.authenticate(
+      'local-signup',
+      {
+        successRedirect: '/',
+        failureRedirect: '/login',
+      })
+  );
 
   // ------- END AUTHENTICATION ROUTES ------- //
 
