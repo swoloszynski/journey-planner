@@ -48,6 +48,15 @@ module.exports = (app) => { /* jshint unused: false */
   // Receive Login Submission
 
   // Receive Signup Submission
+  app.post('/signup',
+    passport.authenticate(
+      'local-signup',
+      {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+      })
+  );
 
   // ------- END AUTHENTICATION ROUTES ------- //
 
