@@ -3,6 +3,7 @@
 const config   = require('./config');
 const PORT     = config.port;
 const express  = require('express');
+const db       = require("./src/models");
 
 const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -22,8 +23,11 @@ app.use(cookieParser()); // read cookies (needed for auth)
 // Require routes
 require("./src/server/routes")(app);
 
-app.listen(config.port, function () {
-  console.log('App listening on port ' + config.port);
+// Run server and log database info
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+  });
 });
 
 module.exports = app;
