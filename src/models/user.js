@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   // Hash a plaintext password before a User is created.
-  User.hook("beforeCreate", function(user) {
+  User.hook('beforeCreate', function(user) {
     const saltRounds = 12;
     const salt = bcrypt.genSaltSync(saltRounds);
     user.passwordHash = bcrypt.hashSync(user.passwordHash, salt);

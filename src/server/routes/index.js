@@ -1,10 +1,9 @@
 'use strict';
 
 const usersController = require('../controllers').users;
-var passport = require("../../../config/passport");
-const session      = require('express-session');
+var passport = require('../../../config/passport');
 
-var db = require("../../models");
+var db = require('../../models');
 
 module.exports = (app) => { /* jshint unused: false */
   console.log('init routes');
@@ -56,11 +55,11 @@ module.exports = (app) => { /* jshint unused: false */
   // --- Handle data --- //
 
   // Receive Login Submission
-  // app.post("/login", passport.authenticate("local"), function(req, res) {
+  // app.post('/login', passport.authenticate('local'), function(req, res) {
   //     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
   //     // So we're sending the user back the route to the members page because the redirect will happen on the front end
   //     // They won't get this or even be able to access this page if they aren't authed
-  //     res.json("/profile");
+  //     res.json('/profile');
   //   });
 
   app.post('/login', function(req, res, next) {
@@ -93,7 +92,7 @@ module.exports = (app) => { /* jshint unused: false */
 
 
   // Receive Signup Submission
-  app.post("/signup", function(req, res) {
+  app.post('/signup', function(req, res) {
     db.User.create({
       email: req.body.email,
       name: req.body.email,
@@ -102,7 +101,7 @@ module.exports = (app) => { /* jshint unused: false */
 
     }).then(function() {
       console.log('after creating user');
-      res.redirect(302, "/login");
+      res.redirect(302, '/login');
     }).catch(function(err) {
       console.log(err);
       res.json(err);
