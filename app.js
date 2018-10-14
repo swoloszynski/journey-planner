@@ -10,12 +10,14 @@ const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const session      = require('express-session');
-const passport     = require('passport');
-require('./config/passport')(passport);
+
+const passport      = require("./config/passport");
+const LocalStrategy = require('passport-local').Strategy;
 
 // Initialize app
 const app = express();
 
+app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -34,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Require routes
-routes(app, passport);
+routes(app);
 
 // Run server and log database info
 db.sequelize.sync().then(function() {

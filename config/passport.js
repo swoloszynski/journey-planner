@@ -1,47 +1,60 @@
-var User          = require('../src/models/user');
+
+var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
+var db          = require('../src/models/');
 
-module.exports = function(passport) {
-    // used to serialize the user for the session
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
-    });
+passport.use('test-strategy', new LocalStrategy(
+  function(username, password, done) {
+    console.log('HELLO I AM HERE AND RUNNING');
+    return done(null, { hello: 'world' });
+  }
+));
 
-    // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
+passport.use('local-login', new LocalStrategy(
+  // Our user will sign in using an email, rather than a "username"
+  {
+    // Must match request body
+    usernameField : 'email',
+    passwordField : 'password',
+  },
+  function(email, password, done) {
+    console.log('about to get the user by email', email);
+    // When a user tries to sign in this code runs
+    db.User.findOne({
+      where: {
+        email: email
+      }
+    }).then(function(dbUser) {
+      // If there's no user with the given email
+      console.log('got a user');
+      if (!dbUser) {
+        return done(null, false, {
+          message: "Incorrect email."
         });
+      }
+      // If there is a user with the given email, but the password the user gives us is incorrect
+      else if (!dbUser.validPassword(password)) {
+        return done(null, false, {
+          message: "Incorrect password."
+        });
+      }
+      // If none of the above, return the user
+      return done(null, dbUser);
     });
+  }
+));
+//
+// In order to help keep authentication state across HTTP requests,
+// Sequelize needs to serialize and deserialize the user
+// Just consider this part boilerplate needed to make it all work
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+//
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
-    // LOCAL SIGNUP
-    passport.use('local-signup', new LocalStrategy(
-        {
-            usernameField : 'email',
-            passwordField : 'hashedPassword',
-            // allows it to pass back the entire request to the callback
-            passReqToCallback : true,
-        },
-        function(email, password, done) {
-          User.findOne({ email: email }, function(err, user) {
-            if (err) { return done(err); }
-            if(!user) {
-              // Create a new user
-              User.create({
-                email: email,
-                username: email,
-                passwordHash: password,
-                name: 'bob',
-              }, function(err, user) {
-                if (err) {return done(err); }
-                // Successfully created new user
-                return done(null, user);
-              });
-            }
-            return done(null, false, {
-              message: 'User with that email already exists.'
-            });
-          });
-        })
-    );
-};
+//
+// Exporting our configured passport
+module.exports = passport;

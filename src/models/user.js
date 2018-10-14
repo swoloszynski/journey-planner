@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   // Check if an unhashed password provided by the user matches the
   // hashed password stored in the database.
   User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.passwordHash);
   };
 
   // Hash a plaintext password before a User is created.
