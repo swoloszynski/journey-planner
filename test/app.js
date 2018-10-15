@@ -12,6 +12,22 @@ describe('GET /', () => {
   });
 });
 
+describe('Authentication', () => {
+  it('should GET /login', (done) => {
+    request(app)
+      .get('/login')
+      .expect(200)
+      .end(done);
+  });
+
+  it('should GET /signup', (done) => {
+    request(app)
+      .get('/signup')
+      .expect(200)
+      .end(done);
+  });
+});
+
 describe('GET /api', () => {
   it('should return 200 OK', (done) => {
     request(app)
