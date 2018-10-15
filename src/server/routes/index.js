@@ -41,9 +41,13 @@ module.exports = (app) => { /* jshint unused: false */
 
   // Sign up form
   app.get('/signup', function(req, res) {
-    res.render('signup', {
+    const message = req.flash('error');
+    const data = {
       title: 'JP Signup',
-    });
+      message: message,
+    };
+
+    res.render('signup', data);
   });
 
   // Profile view (authenticated users only)
@@ -71,6 +75,7 @@ module.exports = (app) => { /* jshint unused: false */
     {
       successRedirect: '/login',
       failureRedirect: '/signup',
+      failureFlash : true,
     })
   );
 
