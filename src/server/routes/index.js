@@ -3,8 +3,6 @@
 const usersController = require('../controllers').users;
 var passport = require('../../../config/passport');
 
-var db = require('../../models');
-
 module.exports = (app) => { /* jshint unused: false */
   console.log('init routes');
   app.set('views', './src/views');
@@ -92,30 +90,14 @@ module.exports = (app) => { /* jshint unused: false */
 
 
   // Receive Signup Submission
-  app.post('/signup', function(req, res) {
-    db.User.create({
-      email: req.body.email,
-      name: req.body.email,
-      username: req.body.email,
-      passwordHash: req.body.password,
-
-    }).then(function() {
-      console.log('after creating user');
-      res.redirect(302, '/login');
-    }).catch(function(err) {
-      console.log(err);
-      res.json(err);
-      // res.status(422).json(err.errors[0].message);
-    });
-  });
-  // app.post('/signup',
-  //   passport.authenticate(
-  //     'local-signup',
-  //     {
-  //       successRedirect: '/',
-  //       failureRedirect: '/login',
-  //     })
-  // );
+  app.post('/signup',
+    passport.authenticate(
+      'local-signup',
+      {
+        successRedirect: '/login',
+        failureRedirect: '/signup',
+      })
+  );
 
   // ------- END AUTHENTICATION ROUTES ------- //
 
