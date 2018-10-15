@@ -26,13 +26,13 @@ passport.use('local-login', new LocalStrategy(
       // If there's no user found with the given email
       if (!dbUser) {
         return done(null, false, {
-          message: "Incorrect email."
+          message: "User not found.",
         });
       }
       // If the given password doesn't match
       else if (!dbUser.validPassword(password)) {
         return done(null, false, {
-          message: "Incorrect password."
+          message: "Email and password do not match.",
         });
       }
       // If user exists and password matches, return user
@@ -73,7 +73,7 @@ passport.use('local-signup', new LocalStrategy(
         }).catch(function(err) {
           // Failed to create a new user.
           return done(null, false, {
-              message: "Error creating user.",
+              message: "Error creating new account.",
             });
         });
       }
