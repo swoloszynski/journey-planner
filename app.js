@@ -37,11 +37,15 @@ app.use(passport.session());
 // Require routes
 routes(app);
 
-// Run server and log database info
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log('==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.', PORT, PORT);
+if (config.env === 'development') {
+  // Run server and log database info
+  db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
+      console.log('==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.', PORT, PORT);
+    });
   });
-});
+} else {
+  app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+}
 
 module.exports = app;
