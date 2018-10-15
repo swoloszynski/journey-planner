@@ -19,7 +19,7 @@ describe('GET /', () => {
   });
 });
 
-describe('Signup', () => {
+describe('Authentication', () => {
   let createStub;
   let findOneStub;
 
@@ -32,67 +32,78 @@ describe('Signup', () => {
     sandbox.restore();
   });
 
-  it('should GET /signup', (done) => {
-    request(app)
-      .get('/signup')
-      .expect(200)
-      .end(done);
+  describe('Signup', () => {
+    it('should GET /signup', (done) => {
+      request(app)
+        .get('/signup')
+        .expect(200)
+        .end(done);
+    });
+
+    it('should redirect to /login on successful POST /signup', (done) => {
+      findOneStub.resolves(false);
+      createStub.resolves({ new: 'user' });
+
+      const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+
+      request(app)
+        .post('/signup')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/login');
+          done();
+        });
+    });
+
+    it('should redirect to /signup on failed POST /signup when user exists', (done) => {
+      findOneStub.resolves({ existing: 'user' });
+
+      const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+
+      request(app)
+        .post('/signup')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/signup');
+          done();
+        });
+    });
+
+    it('should redirect to /signup on failed POST /signup when user creation fails', (done) => {
+      findOneStub.resolves(false);
+      createStub.resolves(null);
+
+      const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+
+      request(app)
+        .post('/signup')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/signup');
+          done();
+        });
+    });
   });
 
-  it('should redirect to /login on successful POST /signup', (done) => {
-    createStub.resolves({ new: 'user' });
-    findOneStub.resolves(false);
-
-    const data = {
-      email: 'jose@email.com',
-      password: 'secretpassword',
-    };
-
-    request(app)
-      .post('/signup')
-      .send(data)
-      .expect(302)
-      .end((err, res) => {
-        expect(res.header.location).to.include('/login');
-        done();
-      });
-  });
-
-  it('should redirect to /signup on failed POST /signup when user exists', (done) => {
-    findOneStub.resolves({ existing: 'user' });
-
-    const data = {
-      email: 'jose@email.com',
-      password: 'secretpassword',
-    };
-
-    request(app)
-      .post('/signup')
-      .send(data)
-      .expect(302)
-      .end((err, res) => {
-        expect(res.header.location).to.include('/signup');
-        done();
-      });
-  });
-
-  it('should redirect to /signup on failed POST /signup when user creation fails', (done) => {
-    findOneStub.resolves(false);
-    createStub.resolves(null);
-
-    const data = {
-      email: 'jose@email.com',
-      password: 'secretpassword',
-    };
-
-    request(app)
-      .post('/signup')
-      .send(data)
-      .expect(302)
-      .end((err, res) => {
-        expect(res.header.location).to.include('/signup');
-        done();
-      });
+  describe('Login', () => {
+    it('should GET /login', (done) => {
+      request(app)
+        .get('/login')
+        .expect(200)
+        .end(done);
+    });
   });
 });
 
