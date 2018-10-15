@@ -1,10 +1,13 @@
 'use strict';
 
 const request = require('supertest');
-const app = require('../app');
 const sinon = require('sinon');
 const chai = require('chai');
 const expect = chai.expect;
+
+const sandbox = sinon.createSandbox();
+
+const app = require('../app');
 const User = require('../src/models').User;
 
 describe('GET /', () => {
@@ -16,12 +19,17 @@ describe('GET /', () => {
   });
 });
 
-describe('Authentication', () => {
-  it('should GET /login', (done) => {
-    request(app)
-      .get('/login')
-      .expect(200)
-      .end(done);
+describe('Signup', () => {
+  let createStub;
+  let findOneStub;
+
+  beforeEach(function() {
+    createStub = sandbox.stub(User, 'create');
+    findOneStub = sandbox.stub(User, 'findOne');
+  });
+
+  afterEach(function() {
+    sandbox.restore();
   });
 
   it('should GET /signup', (done) => {
@@ -32,12 +40,13 @@ describe('Authentication', () => {
   });
 
   it('should redirect to /login on successful POST /signup', (done) => {
+    createStub.resolves({ new: 'user' });
+    findOneStub.resolves(false);
+
     const data = {
       email: 'jose@email.com',
       password: 'secretpassword',
     };
-
-    const userStub = sinon.stub(User, 'create').resolves();  /*jshint unused:false*/
 
     request(app)
       .post('/signup')
