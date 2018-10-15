@@ -1,4 +1,5 @@
 'use strict';
+/*jshint expr: true*/
 
 const request = require('supertest');
 const sinon = require('sinon');
@@ -103,6 +104,26 @@ describe('Authentication', () => {
         .get('/login')
         .expect(200)
         .end(done);
+    });
+
+    it('should redirect to /profile on successful POST /login', (done) => {
+      const validPasswordStub = sandbox.stub().returns(true);
+      findOneStub.resolves({ validPassword: validPasswordStub });
+
+      const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+
+      request(app)
+        .post('/login')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/profile');
+          expect(validPasswordStub.called).to.be.true;
+          done();
+        });
     });
   });
 });
