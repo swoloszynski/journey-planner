@@ -10,6 +10,7 @@ const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const session      = require('express-session');
+const flash        = require('connect-flash');
 
 const passport      = require('./config/passport');
 
@@ -33,6 +34,9 @@ app.use(session({
 // Set up passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Use flash for passing error messages stored in the session
+app.use(flash());
 
 // Require routes
 routes(app);

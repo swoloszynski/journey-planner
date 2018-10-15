@@ -30,9 +30,13 @@ module.exports = (app) => { /* jshint unused: false */
 
   // Login form
   app.get('/login', function(req, res) {
-    res.render('login', {
+    const message = req.flash('error');
+    const data = {
       title: 'JP Login',
-    });
+      message: message,
+    };
+
+    res.render('login', data);
   });
 
   // Sign up form
@@ -57,6 +61,7 @@ module.exports = (app) => { /* jshint unused: false */
     {
       successRedirect : '/profile',
       failureRedirect : '/login',
+      failureFlash : true,
     }));
 
 
