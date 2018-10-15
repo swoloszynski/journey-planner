@@ -53,7 +53,7 @@ module.exports = (app) => { /* jshint unused: false */
   // Profile view (authenticated users only)
   app.get('/profile', function(req, res) {
     res.render('profile', {
-      title: 'JP PROFILE = IT WORKED',
+      title: 'JP Profile',
     });
   });
 
