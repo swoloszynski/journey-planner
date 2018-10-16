@@ -32,6 +32,12 @@ module.exports = (sequelize, DataTypes) => {
     user.passwordHash = bcrypt.hashSync(user.passwordHash, salt);
   });
 
+  // Check if an unhashed password provided by the user matches the
+  // hashed password stored in the database.
+  User.prototype.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.passwordHash);
+  };
+
   User.associate = function(models) { /* jshint unused: false */
     // associations can be defined here
   };
