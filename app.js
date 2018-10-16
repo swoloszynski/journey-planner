@@ -10,6 +10,7 @@ const routes = require('./src/server/routes');
 const bodyParser = require('body-parser');
 const morgan     = require('morgan');
 
+const configuredPassport = require('./config/passport');
 const app = express();
 
 if (config.env === 'development') {
@@ -19,6 +20,10 @@ if (config.env === 'development') {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Set up passport
+app.use(configuredPassport.initialize());
+app.use(configuredPassport.session());
 
 routes(app);
 
