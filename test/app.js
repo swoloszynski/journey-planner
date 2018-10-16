@@ -77,6 +77,25 @@ describe('Authentication', () => {
           done();
         });
     });
+
+    it('should redirect to /signup on failed POST /signup when user creation fails', (done) => {
+      findOneStub.resolves(false);
+      createStub.resolves(null);
+
+      const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+
+      request(app)
+        .post('/signup')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/signup');
+          done();
+        });
+    });
   });
 });
 
