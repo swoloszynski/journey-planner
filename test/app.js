@@ -124,6 +124,22 @@ describe('Authentication', () => {
           done();
         });
     });
+
+     it('should redirect to /login on failed POST /login when the email doesn\'t match a user', (done) => {
+      findOneStub.resolves(false);
+       const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+       request(app)
+        .post('/login')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/login');
+          done();
+        });
+    });
   });
 });
 
