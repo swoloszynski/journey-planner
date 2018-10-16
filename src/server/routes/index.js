@@ -61,6 +61,12 @@ module.exports = (app) => {
   );
 
   // Receive Login Submission
+  app.post('/login', configuredPassport.authenticate(
+    'local-login',
+    {
+      successRedirect : '/profile',
+      failureRedirect : '/login',
+    }));
 
   // ------- END AUTHENTICATION ROUTES ------- //
 
