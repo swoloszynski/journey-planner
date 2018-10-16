@@ -32,6 +32,9 @@ app.use(session({
 app.use(configuredPassport.initialize());
 app.use(configuredPassport.session());
 
+// Use flash for passing error messages stored in the session
+app.use(flash());
+
 routes(app);
 
 if (config.env === 'development') {
