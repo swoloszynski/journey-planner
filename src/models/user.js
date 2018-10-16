@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },
+    passwordHash: {
+      type: DataTypes.STRING,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false
