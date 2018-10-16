@@ -35,6 +35,11 @@ module.exports = (app) => {
   });
 
   // Sign up form
+  app.get('/signup', function(req, res) {
+    res.render('signup', {
+      title: 'JP Signup',
+    });
+  });
 
   // --- Handle data --- //
 

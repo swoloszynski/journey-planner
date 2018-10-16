@@ -12,6 +12,17 @@ describe('GET /', () => {
   });
 });
 
+describe('Authentication', () => {
+  describe('Signup', () => {
+    it('should GET /signup', (done) => {
+      request(app)
+        .get('/signup')
+        .expect(200)
+        .end(done);
+    });
+  });
+});
+
 describe('Account', () => {
   describe('Profile', () => {
     it('should GET /profile', (done) => {
