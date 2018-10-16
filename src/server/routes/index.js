@@ -23,6 +23,20 @@ module.exports = (app) => {
     });
   });
 
+  // ------- AUTHENTICATION ROUTES ------- //
+
+  // --- Views --- //
+
+  // Profile view (authenticated users only)
+
+  // Sign up form
+
+  // --- Handle data --- //
+
+  // Receive Signup Submission
+
+  // ------- END AUTHENTICATION ROUTES ------- //
+
   // Catch-all route must be last
   app.get('*', function (req, res) {
     res.statusCode = 404;
