@@ -14,7 +14,7 @@ module.exports = (app) => {
   app.get('/api/users', usersController.list);
   app.get('/api/users/:username', usersController.retrieve);
 
-  app.get('/app', function (req, res) {
+  app.get('/', function (req, res) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     res.render('index', {
