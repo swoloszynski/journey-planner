@@ -59,6 +59,24 @@ describe('Authentication', () => {
           done();
         });
     });
+
+    it('should redirect to /signup on failed POST /signup when user exists', (done) => {
+      findOneStub.resolves({ existing: 'user' });
+
+      const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+
+      request(app)
+        .post('/signup')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/signup');
+          done();
+        });
+    });
   });
 });
 
