@@ -28,6 +28,11 @@ module.exports = (app) => {
   // --- Views --- //
 
   // Profile view (authenticated users only)
+  app.get('/profile', function(req, res) {
+    res.render('profile', {
+      title: 'JP Profile',
+    });
+  });
 
   // Sign up form
 

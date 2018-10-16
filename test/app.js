@@ -12,6 +12,17 @@ describe('GET /', () => {
   });
 });
 
+describe('Account', () => {
+  describe('Profile', () => {
+    it('should GET /profile', (done) => {
+      request(app)
+        .get('/profile')
+        .expect(200)
+        .end(done);
+    });
+  });
+});
+
 describe('GET /api', () => {
   it('should return 200 OK', (done) => {
     request(app)
