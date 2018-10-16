@@ -5,6 +5,7 @@ const express = require('express');
 const config = require('./config');
 const PORT   = config.port;
 const db     = require('./src/models');
+const routes = require('./src/server/routes');
 
 const bodyParser = require('body-parser');
 const morgan     = require('morgan');
@@ -19,7 +20,7 @@ if (config.env === 'development') {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-require('./src/server/routes')(app);
+routes(app);
 
 if (config.env === 'development') {
   // Run server and log database info
