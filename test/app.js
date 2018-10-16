@@ -140,6 +140,24 @@ describe('Authentication', () => {
           done();
         });
     });
+
+    it('should redirect to /login on failed POST /login when the password is invalid', (done) => {
+      const validPasswordStub = sandbox.stub().returns(false);
+      findOneStub.resolves({ validPassword: validPasswordStub });
+       const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+       request(app)
+        .post('/login')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/login');
+          expect(validPasswordStub.called).to.be.true;
+          done();
+        });
+    });
   });
 });
 
