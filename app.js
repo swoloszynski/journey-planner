@@ -9,6 +9,8 @@ const routes = require('./src/server/routes');
 
 const bodyParser = require('body-parser');
 const morgan     = require('morgan');
+const flash      = require('connect-flash');
+const session    = require('express-session');
 
 const configuredPassport = require('./config/passport');
 const app = express();
@@ -21,9 +23,17 @@ if (config.env === 'development') {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Set up sessions for persistent login
+app.use(session({
+  secret: config.sessionSecret,
+}));
+
 // Set up passport
 app.use(configuredPassport.initialize());
 app.use(configuredPassport.session());
+
+// Use flash for passing error messages stored in the session
+app.use(flash());
 
 routes(app);
 
