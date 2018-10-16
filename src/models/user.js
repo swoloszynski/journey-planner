@@ -25,6 +25,13 @@ module.exports = (sequelize, DataTypes) => {
     contact: DataTypes.TEXT
   }, {});
 
+  // Hash a plaintext password before a User is created.
+  User.hook('beforeCreate', function(user) {
+    const saltRounds = 12;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    user.passwordHash = bcrypt.hashSync(user.passwordHash, salt);
+  });
+
   User.associate = function(models) { /* jshint unused: false */
     // associations can be defined here
   };
