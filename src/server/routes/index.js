@@ -42,6 +42,13 @@ module.exports = (app) => {
     });
   });
 
+  // Log in form
+  app.get('/login', function(req, res) {
+    res.render('login', {
+      title: 'JP Login',
+    });
+  });
+
   // --- Handle data --- //
 
   // Receive Signup Submission
@@ -52,6 +59,14 @@ module.exports = (app) => {
       failureRedirect: '/signup',
     })
   );
+
+  // Receive Login Submission
+  app.post('/login', configuredPassport.authenticate(
+    'local-login',
+    {
+      successRedirect : '/profile',
+      failureRedirect : '/login',
+    }));
 
   // ------- END AUTHENTICATION ROUTES ------- //
 

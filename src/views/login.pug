@@ -3,17 +3,16 @@ html
     title= title
   body
     div
-      form(action='/signup', method='post')
+      form(action='/login', method='post')
         .form-group
           label Email
           input.form-control(type='text', name='email')
         .form-group
           label Password
           input.form-control(type='password', name='password')
-        button(type='submit') Signup
+        button.btn.btn-warning.btn-lg(type='submit') Login
       hr
       div
         a(href='/') Home
       div
-        | Already have an account?&nbsp
-        a(href='/login') Log in
+        a(href='/signup') Sign up for a new account

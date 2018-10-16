@@ -1,3 +1,4 @@
+/*jshint expr: true*/
 'use strict';
 
 const request = require('supertest');
@@ -93,6 +94,67 @@ describe('Authentication', () => {
         .expect(302)
         .end((err, res) => {
           expect(res.header.location).to.include('/signup');
+          done();
+        });
+    });
+  });
+
+  describe('Login', () => {
+    it('should GET /login', (done) => {
+      request(app)
+        .get('/login')
+        .expect(200)
+        .end(done);
+    });
+
+    it('should redirect to /profile on successful POST /login', (done) => {
+      const validPasswordStub = sandbox.stub().returns(true);
+      findOneStub.resolves({ validPassword: validPasswordStub });
+       const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+       request(app)
+        .post('/login')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/profile');
+          expect(validPasswordStub.called).to.be.true;
+          done();
+        });
+    });
+
+     it('should redirect to /login on failed POST /login when the email doesn\'t match a user', (done) => {
+      findOneStub.resolves(false);
+       const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+       request(app)
+        .post('/login')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/login');
+          done();
+        });
+    });
+
+    it('should redirect to /login on failed POST /login when the password is invalid', (done) => {
+      const validPasswordStub = sandbox.stub().returns(false);
+      findOneStub.resolves({ validPassword: validPasswordStub });
+       const data = {
+        email: 'jose@email.com',
+        password: 'secretpassword',
+      };
+       request(app)
+        .post('/login')
+        .send(data)
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/login');
+          expect(validPasswordStub.called).to.be.true;
           done();
         });
     });
