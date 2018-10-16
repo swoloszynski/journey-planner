@@ -1,6 +1,7 @@
 'use strict';
 
 const usersController = require('../controllers').users;
+const configuredPassport = require('../../../config/passport');
 
 module.exports = (app) => {
   app.set('views', './src/views');
@@ -44,6 +45,13 @@ module.exports = (app) => {
   // --- Handle data --- //
 
   // Receive Signup Submission
+  app.post('/signup', configuredPassport.authenticate(
+    'local-signup',
+    {
+      successRedirect: '/profile',
+      failureRedirect: '/signup',
+    })
+  );
 
   // ------- END AUTHENTICATION ROUTES ------- //
 
