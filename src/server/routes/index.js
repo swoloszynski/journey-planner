@@ -42,6 +42,8 @@ module.exports = (app) => {
     });
   });
 
+  // Log in form
+
   // --- Handle data --- //
 
   // Receive Signup Submission
@@ -52,6 +54,8 @@ module.exports = (app) => {
       failureRedirect: '/signup',
     })
   );
+
+  // Receive Login Submission
 
   // ------- END AUTHENTICATION ROUTES ------- //
 
