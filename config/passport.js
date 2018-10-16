@@ -50,4 +50,35 @@ passport.use('local-signup', new LocalStrategy(
   }
 ));
 
+passport.use('local-login', new LocalStrategy(
+  {
+    // Field names must match request body
+    usernameField : 'email',
+    passwordField : 'password',
+  },
+  function(email, password, done) {
+    db.User.findOne({
+      where: {
+        email: email
+      }
+    }).then(function(dbUser) {
+      // If there's no user found with the given email
+      if (!dbUser) {
+        return done(null, false, {
+          message: "User not found.",
+        });
+      }
+      // If the given password doesn't match
+      else if (!dbUser.validPassword(password)) {
+        return done(null, false, {
+          message: "Email and password do not match.",
+        });
+      }
+      // If user exists and password matches, return user
+      return done(null, dbUser);
+    });
+  }
+));
+
+
 module.exports = passport;
