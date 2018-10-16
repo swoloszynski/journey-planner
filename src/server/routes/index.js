@@ -37,16 +37,22 @@ module.exports = (app) => {
 
   // Sign up form
   app.get('/signup', function(req, res) {
-    res.render('signup', {
+    const message = req.flash('error');
+    const data = {
       title: 'JP Signup',
-    });
+      message: message,
+    };
+     res.render('signup', data);
   });
 
-  // Log in form
+  // Login form
   app.get('/login', function(req, res) {
-    res.render('login', {
+    const message = req.flash('error');
+    const data = {
       title: 'JP Login',
-    });
+      message: message,
+    };
+     res.render('login', data);
   });
 
   // --- Handle data --- //
@@ -57,6 +63,7 @@ module.exports = (app) => {
     {
       successRedirect: '/profile',
       failureRedirect: '/signup',
+      failureFlash : true,
     })
   );
 
@@ -66,6 +73,7 @@ module.exports = (app) => {
     {
       successRedirect : '/profile',
       failureRedirect : '/login',
+      failureFlash : true,
     }));
 
   // ------- END AUTHENTICATION ROUTES ------- //
