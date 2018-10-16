@@ -97,6 +97,15 @@ describe('Authentication', () => {
         });
     });
   });
+
+  describe('Login', () => {
+    it('should GET /login', (done) => {
+      request(app)
+        .get('/login')
+        .expect(200)
+        .end(done);
+    });
+  });
 });
 
 describe('Account', () => {

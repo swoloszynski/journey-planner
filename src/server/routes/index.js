@@ -43,6 +43,11 @@ module.exports = (app) => {
   });
 
   // Log in form
+  app.get('/login', function(req, res) {
+    res.render('login', {
+      title: 'JP Login',
+    });
+  });
 
   // --- Handle data --- //
 
