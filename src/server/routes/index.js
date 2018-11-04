@@ -1,3 +1,6 @@
+var express = require("express");
+var app = express();
+
 'use strict';
 
 const usersController = require('../controllers').users;
@@ -23,6 +26,10 @@ module.exports = (app) => {
       message:'Hello World!'
     });
   });
+
+  // ------- Static Files ------- //
+  app.use(express.static('assets'))
+
 
   // ------- AUTHENTICATION ROUTES ------- //
 
