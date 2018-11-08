@@ -3,11 +3,19 @@ const LocalStrategy = require('passport-local').Strategy;
 const db            = require('../src/models/');
 
 passport.serializeUser(function(user, cb) {
-  cb(null, user);
+  // Sets req.session.passport.user
+  const sessionUser = {
+    id: user.id,
+    username: user.username,
+    email: user.email,
+    name: user.name,
+  };
+  cb(null, sessionUser);
 });
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
+passport.deserializeUser(function(sessionUser, cb) {
+  // Gets sessionUser from req.session.passport.user
+  cb(null, sessionUser);
 });
 
 passport.use('local-signup', new LocalStrategy(
