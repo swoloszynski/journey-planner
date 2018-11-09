@@ -21,7 +21,8 @@ module.exports = (app) => {
     res.setHeader('Content-Type', 'text/html');
     res.render('index', {
       title: 'Journey Planner',
-      message:'Hello World!'
+      message:'Hello World!',
+      user: req.user,
     });
   });
 
