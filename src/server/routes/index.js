@@ -2,6 +2,7 @@
 
 const usersController = require('../controllers').users;
 const configuredPassport = require('../../../config/passport');
+const auth = require('../middleware/auth');
 
 module.exports = (app) => {
   app.set('views', './src/views');
@@ -29,9 +30,10 @@ module.exports = (app) => {
   // --- Views --- //
 
   // Profile view (authenticated users only)
-  app.get('/profile', function(req, res) {
+  app.get('/profile', auth.required, function(req, res) {
     res.render('profile', {
       title: 'JP Profile',
+      user: req.user,
     });
   });
 
