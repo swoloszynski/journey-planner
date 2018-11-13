@@ -1,8 +1,10 @@
 'use strict';
 
-const usersController = require('../controllers').users;
-const authController = require('../controllers').auth;
-const homeController = require('../controllers').home;
+const controllers = require('../controllers');
+const usersController = controllers.users;
+const authController = controllers.auth;
+const homeController = controllers.home;
+const accountController = controllers.account;
 
 const configuredPassport = require('../../../config/passport');
 
@@ -25,11 +27,7 @@ module.exports = (app) => {
   // --- Views --- //
 
   // Profile view (authenticated users only)
-  app.get('/profile', function(req, res) {
-    res.render('profile', {
-      title: 'JP Profile',
-    });
-  });
+  app.get('/profile', accountController.render);
 
   // Sign up form
   app.get('/signup', function(req, res) {
