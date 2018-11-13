@@ -55,4 +55,30 @@ describe('Auth Controller', () => {
       expect(templateData.message).to.eql('womp');
     });
   });
+
+  describe('renderLogin', () => {
+    it('should render login form and pass flash error message', () => {
+
+      const fakeFlash = sandbox.stub().returns('womp');
+
+      const req = httpMocks.createRequest({
+        flash: fakeFlash,
+      });
+
+      const res = httpMocks.createResponse();
+
+      authController.renderLogin(req, res);
+
+      expect(fakeFlash.called).to.be.true;
+
+      expect(res.statusCode).to.eql(200);
+
+      const templateName = res._getRenderView();
+      expect(templateName).to.eql('login');
+
+      const templateData = res._getRenderData();
+      expect(templateData.title).to.eql('JP Login');
+      expect(templateData.message).to.eql('womp');
+    });
+  });
 });

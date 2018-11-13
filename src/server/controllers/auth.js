@@ -12,5 +12,13 @@
       message: message,
     };
      res.render('signup', data);
+  },
+  renderLogin(req, res) {
+    const message = req.flash('error');
+    const data = {
+      title: 'JP Login',
+      message: message,
+    };
+     res.render('login', data);
   }
 };
