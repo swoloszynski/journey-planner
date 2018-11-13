@@ -2,6 +2,7 @@
 
 const usersController = require('../controllers').users;
 const authController = require('../controllers').auth;
+const homeController = require('../controllers').home;
 
 const configuredPassport = require('../../../config/passport');
 
@@ -17,14 +18,7 @@ module.exports = (app) => {
   app.get('/api/users', usersController.list);
   app.get('/api/users/:username', usersController.retrieve);
 
-  app.get('/', function (req, res) {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.render('index', {
-      title: 'Journey Planner',
-      message:'Hello World!'
-    });
-  });
+  app.get('/', homeController.render);
 
   // ------- AUTHENTICATION ROUTES ------- //
 
