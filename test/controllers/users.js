@@ -70,4 +70,34 @@ describe('Users Controller', () => {
       expect(allStub.called).to.be.true;
     });
   });
+
+  describe('retrieve', () => {
+    let findStub;
+
+    beforeEach(function() {
+      findStub = sandbox.stub(User, 'findOne');
+    });
+
+    it('should create a new user', () => {
+      findStub.resolves({ new: 'user' });
+
+      const fakeReq = {
+        params: {
+          username: 'jane',
+        },
+      };
+
+      const fakeRes = {
+        status: function(status) {
+          expect(status).to.eql(200);
+          return {
+            send: sandbox.fake(),
+          };
+        },
+      };
+
+      usersController.retrieve(fakeReq, fakeRes);
+      expect(findStub.called).to.be.true;
+    });
+  });
 });
