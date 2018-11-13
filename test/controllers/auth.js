@@ -4,6 +4,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const sinon = require('sinon');
 const sandbox = sinon.createSandbox();
+const httpMocks = require('node-mocks-http');
+
 const authController = require('../../src/server/controllers').auth;
 
 describe('Auth Controller', () => {
@@ -13,15 +15,18 @@ describe('Auth Controller', () => {
     });
 
     it('should call req.logout()', () => {
-      const fakeReq = {
+
+      const req = httpMocks.createRequest({
         logout: sandbox.fake(),
-      };
-      const fakeRes = {
-        redirect: sinon.fake(),
-      };
-      authController.logout(fakeReq, fakeRes);
-      expect(fakeReq.logout.called).to.be.true;
-      expect(fakeRes.redirect.called).to.be.true;
+      });
+
+      const res = httpMocks.createResponse();
+
+      authController.logout(req, res);
+
+      expect(req.logout.called).to.be.true;
+      expect(res.statusCode).to.eql(302);
+      expect(res._getRedirectUrl()).to.eql('/');
     });
   });
 });
