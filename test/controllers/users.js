@@ -44,6 +44,31 @@ describe('Users Controller', () => {
       usersController.create(fakeReq, fakeRes);
       expect(createStub.called).to.be.true;
     });
+
+    it('should return 400 if user creation fails', () => {
+      const err = new Error('womp');
+      createStub.throws(err);
+
+      const fakeReq = {
+        body: {
+          username: 'diogo3',
+          name: 'Diogo',
+        }
+      };
+
+      const fakeRes = {
+        status: function(status) {
+          expect(status).to.eql(400);
+          expect(createStub.called).to.be.true;
+          return {
+            send: sandbox.fake(),
+          };
+        },
+      };
+
+      expect(usersController.create.bind(usersController, fakeReq, fakeRes))
+        .to.throw('womp');
+    });
   });
 
   describe('list', () => {
