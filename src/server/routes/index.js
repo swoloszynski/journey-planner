@@ -7,6 +7,7 @@ const homeController = controllers.home;
 const accountController = controllers.account;
 
 const configuredPassport = require('../../../config/passport');
+const auth = require('../middleware/auth');
 
 module.exports = (app) => {
   app.set('views', './src/views');
@@ -27,7 +28,7 @@ module.exports = (app) => {
   // --- Views --- //
 
   // Profile view (authenticated users only)
-  app.get('/profile', accountController.render);
+  app.get('/profile', auth.required, accountController.render);
 
   // Sign up form
   app.get('/signup', authController.renderSignup);

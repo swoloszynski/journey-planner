@@ -163,11 +163,14 @@ describe('Authentication', () => {
 
 describe('Account', () => {
   describe('Profile', () => {
-    it('should GET /profile', (done) => {
+    it('should GET /profile and redirect when not logged in', (done) => {
       request(app)
         .get('/profile')
-        .expect(200)
-        .end(done);
+        .expect(302)
+        .end((err, res) => {
+          expect(res.header.location).to.include('/login');
+          done();
+        });
     });
   });
 });

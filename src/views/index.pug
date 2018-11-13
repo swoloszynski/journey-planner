@@ -5,7 +5,12 @@ html
     div
       h1= message
     hr
-    div
-      a(href='/signup') Local Sign Up
-    div
-      a(href='/login') Local Log In
+    if user && user.name
+      div
+        p Welcome #{user.name}
+        a(href='/profile') Profile
+    else
+      div
+        a(href='/signup') Local Sign Up
+      div
+        a(href='/login') Local Log In
