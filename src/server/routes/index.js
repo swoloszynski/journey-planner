@@ -30,14 +30,7 @@ module.exports = (app) => {
   app.get('/profile', accountController.render);
 
   // Sign up form
-  app.get('/signup', function(req, res) {
-    const message = req.flash('error');
-    const data = {
-      title: 'JP Signup',
-      message: message,
-    };
-     res.render('signup', data);
-  });
+  app.get('/signup', authController.renderSignup);
 
   // Login form
   app.get('/login', function(req, res) {
