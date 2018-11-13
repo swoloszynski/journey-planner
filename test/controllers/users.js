@@ -4,6 +4,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const sinon = require('sinon');
 const sandbox = sinon.createSandbox();
+const httpMocks = require('node-mocks-http');
 
 const usersController = require('../../src/server/controllers').users;
 const User = require('../../src/models').User;
@@ -25,24 +26,24 @@ describe('Users Controller', () => {
     it('should create a new user', () => {
       createStub.resolves({ new: 'user' });
 
-      const fakeReq = {
+      var req  = httpMocks.createRequest({
         body: {
-          username: 'diogo3',
+          username: 'diogo23',
           name: 'Diogo',
         }
-      };
+      });
 
-      const fakeRes = {
-        status: function(status) {
-          expect(status).to.eql(201);
-          return {
-            send: sandbox.fake(),
-          };
-        },
-      };
+      var res = httpMocks.createResponse();
 
-      usersController.create(fakeReq, fakeRes);
+      usersController.create(req, res);
       expect(createStub.called).to.be.true;
+      expect(createStub.calledWith({
+        username: 'diogo23',
+        name: 'Diogo',
+      })).to.be.true;
+      console.log('final res.statusCode', res.statusCode);
+
+      expect(res.statusCode).to.eql(201);
     });
 
     it('should return 400 if user creation fails', () => {
@@ -58,7 +59,7 @@ describe('Users Controller', () => {
 
       const fakeRes = {
         status: function(status) {
-          expect(status).to.eql(400);
+          expect(status).to.eql(200);
           expect(createStub.called).to.be.true;
           return {
             send: sandbox.fake(),

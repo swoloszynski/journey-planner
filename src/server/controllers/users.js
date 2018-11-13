@@ -9,7 +9,14 @@ module.exports = {
         username: req.body.username,
         name: req.body.name,
       })
-      .then(user => res.status(201).send(user))
+      .then(user => {
+        console.log('user', user);
+        console.log('here');
+        res.status(201);
+        console.log('res.statusCode', res.statusCode);
+        res.send(user);
+        // res.status(201).send(user);
+      })
       .catch(error => res.status(400).send(error));
   },
   list(req, res) {
