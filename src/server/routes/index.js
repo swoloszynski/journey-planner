@@ -1,6 +1,7 @@
 'use strict';
 
 const usersController = require('../controllers').users;
+const authController = require('../controllers').auth;
 const configuredPassport = require('../../../config/passport');
 const auth = require('../middleware/auth');
 
@@ -61,10 +62,7 @@ module.exports = (app) => {
   // --- Handle data --- //
 
   // Log out
-  app.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/');
-  });
+  app.get('/logout', authController.logout);
 
   // Receive Signup Submission
   app.post('/signup', configuredPassport.authenticate(
