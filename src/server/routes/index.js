@@ -60,6 +60,12 @@ module.exports = (app) => {
 
   // --- Handle data --- //
 
+  // Log out
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+  });
+
   // Receive Signup Submission
   app.post('/signup', configuredPassport.authenticate(
     'local-signup',
