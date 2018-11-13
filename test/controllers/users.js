@@ -45,4 +45,29 @@ describe('Users Controller', () => {
       expect(createStub.called).to.be.true;
     });
   });
+
+  describe('list', () => {
+    let allStub;
+
+    beforeEach(function() {
+      allStub = sandbox.stub(User, 'all');
+    });
+
+    it('should create a new user', () => {
+      allStub.resolves([{ new: 'user' }]);
+
+      const fakeReq = {};
+      const fakeRes = {
+        status: function(status) {
+          expect(status).to.eql(200);
+          return {
+            send: sandbox.fake(),
+          };
+        },
+      };
+
+      usersController.list(fakeReq, fakeRes);
+      expect(allStub.called).to.be.true;
+    });
+  });
 });
