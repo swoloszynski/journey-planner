@@ -1,6 +1,11 @@
 'use strict';
 
-const usersController = require('../controllers').users;
+const controllers = require('../controllers');
+const usersController = controllers.users;
+const authController = controllers.auth;
+const homeController = controllers.home;
+const accountController = controllers.account;
+
 const configuredPassport = require('../../../config/passport');
 const auth = require('../middleware/auth');
 
@@ -16,49 +21,25 @@ module.exports = (app) => {
   app.get('/api/users', usersController.list);
   app.get('/api/users/:username', usersController.retrieve);
 
-  app.get('/', function (req, res) {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.render('index', {
-      title: 'Journey Planner',
-      message:'Hello World!',
-      user: req.user,
-    });
-  });
+  app.get('/', homeController.render);
 
   // ------- AUTHENTICATION ROUTES ------- //
 
   // --- Views --- //
 
   // Profile view (authenticated users only)
-  app.get('/profile', auth.required, function(req, res) {
-    res.render('profile', {
-      title: 'JP Profile',
-      user: req.user,
-    });
-  });
+  app.get('/profile', auth.required, accountController.render);
 
   // Sign up form
-  app.get('/signup', function(req, res) {
-    const message = req.flash('error');
-    const data = {
-      title: 'JP Signup',
-      message: message,
-    };
-     res.render('signup', data);
-  });
+  app.get('/signup', authController.renderSignup);
 
   // Login form
-  app.get('/login', function(req, res) {
-    const message = req.flash('error');
-    const data = {
-      title: 'JP Login',
-      message: message,
-    };
-     res.render('login', data);
-  });
+  app.get('/login', authController.renderLogin);
 
   // --- Handle data --- //
+
+  // Logout
+  app.get('/logout', authController.logout);
 
   // Receive Signup Submission
   app.post('/signup', configuredPassport.authenticate(

@@ -3,7 +3,7 @@
 const User = require('../../models').User;
 
 module.exports = {
-  create(req, res) {
+  create: (req, res) => {
     return User
       .create({
         username: req.body.username,
@@ -12,13 +12,13 @@ module.exports = {
       .then(user => res.status(201).send(user))
       .catch(error => res.status(400).send(error));
   },
-  list(req, res) {
+  list: (req, res) => {
     return User
       .all()
       .then(users => res.status(200).send(users))
       .catch(error => res.status(400).send(error));
   },
-  retrieve(req, res) {
+  retrieve: (req, res) => {
     return User
       .findOne(
         {
