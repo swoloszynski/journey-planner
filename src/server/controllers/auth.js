@@ -1,11 +1,11 @@
 'use strict';
 
  module.exports = {
-  logout(req, res) {
+  logout: (req, res) => {
     req.logout();
     res.redirect('/');
   },
-  renderSignup(req, res) {
+  renderSignup: (req, res) => {
     const message = req.flash('error');
     const data = {
       title: 'JP Signup',
@@ -13,7 +13,7 @@
     };
      res.render('signup', data);
   },
-  renderLogin(req, res) {
+  renderLogin: (req, res) => {
     const message = req.flash('error');
     const data = {
       title: 'JP Login',

@@ -1,7 +1,7 @@
 'use strict';
 
  module.exports = {
-  render: function (req, res) {
+  render: (req, res) => {
     res.render('profile', {
       title: 'JP Profile',
     });
