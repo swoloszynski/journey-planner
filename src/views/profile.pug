@@ -4,6 +4,7 @@ html
   body
     | Profile page
     if user && user.name
-      p= user.name
+      p Hello, #{user.name}!
+      a(href='/logout') Log out
     hr
     a(href='/') Home
