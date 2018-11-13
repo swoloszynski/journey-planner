@@ -53,7 +53,7 @@ describe('Users Controller', () => {
       allStub = sandbox.stub(User, 'all');
     });
 
-    it('should create a new user', () => {
+    it('should get all users', () => {
       allStub.resolves([{ new: 'user' }]);
 
       const fakeReq = {};
@@ -78,7 +78,7 @@ describe('Users Controller', () => {
       findStub = sandbox.stub(User, 'findOne');
     });
 
-    it('should create a new user', () => {
+    it('should search for a user', () => {
       findStub.resolves({ new: 'user' });
 
       const fakeReq = {
