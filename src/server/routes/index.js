@@ -1,7 +1,10 @@
 'use strict';
 
-const usersController = require('../controllers').users;
-const authController = require('../controllers').auth;
+const controllers = require('../controllers');
+const usersController = controllers.users;
+const authController = controllers.auth;
+const homeController = controllers.home;
+const accountController = controllers.account;
 
 const configuredPassport = require('../../../config/passport');
 
@@ -17,45 +20,20 @@ module.exports = (app) => {
   app.get('/api/users', usersController.list);
   app.get('/api/users/:username', usersController.retrieve);
 
-  app.get('/', function (req, res) {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.render('index', {
-      title: 'Journey Planner',
-      message:'Hello World!'
-    });
-  });
+  app.get('/', homeController.render);
 
   // ------- AUTHENTICATION ROUTES ------- //
 
   // --- Views --- //
 
   // Profile view (authenticated users only)
-  app.get('/profile', function(req, res) {
-    res.render('profile', {
-      title: 'JP Profile',
-    });
-  });
+  app.get('/profile', accountController.render);
 
   // Sign up form
-  app.get('/signup', function(req, res) {
-    const message = req.flash('error');
-    const data = {
-      title: 'JP Signup',
-      message: message,
-    };
-     res.render('signup', data);
-  });
+  app.get('/signup', authController.renderSignup);
 
   // Login form
-  app.get('/login', function(req, res) {
-    const message = req.flash('error');
-    const data = {
-      title: 'JP Login',
-      message: message,
-    };
-     res.render('login', data);
-  });
+  app.get('/login', authController.renderLogin);
 
   // --- Handle data --- //
 
