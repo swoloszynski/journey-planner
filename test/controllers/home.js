@@ -8,7 +8,7 @@ const httpMocks = require('node-mocks-http');
 
 const homeController = require('../../src/server/controllers').home;
 
-describe('Auth Controller', () => {
+describe('Home Controller', () => {
   describe('render', () => {
     it('should render index template', () => {
       const req = httpMocks.createRequest();
