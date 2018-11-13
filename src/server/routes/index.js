@@ -33,14 +33,7 @@ module.exports = (app) => {
   app.get('/signup', authController.renderSignup);
 
   // Login form
-  app.get('/login', function(req, res) {
-    const message = req.flash('error');
-    const data = {
-      title: 'JP Login',
-      message: message,
-    };
-     res.render('login', data);
-  });
+  app.get('/login', authController.renderLogin);
 
   // --- Handle data --- //
 
