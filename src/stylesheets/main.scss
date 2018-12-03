@@ -1,0 +1,12 @@
+$background-bright-fuchsia: #FF00FF;
+$header-daisy-yellow: #ffff00;
+
+
+body {
+    background-color: $background-bright-fuchsia;
+}
+
+h1 {
+    color: $header-daisy-yellow;
+    margin-left: 20px;
+}
