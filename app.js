@@ -15,6 +15,10 @@ const session    = require('express-session');
 const configuredPassport = require('./config/passport');
 const app = express();
 
+
+// allow static files in assets folder
+app.use(express.static('assets'))
+
 if (config.env === 'development') {
   // log every request
   app.use(morgan('dev'));
