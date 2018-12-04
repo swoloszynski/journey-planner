@@ -3,6 +3,13 @@ $header-daisy-yellow: #ffff00;
 
 body {
     background-color: $background-bright-fuchsia;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 h1 {
