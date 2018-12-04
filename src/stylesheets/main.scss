@@ -1,8 +1,9 @@
 $background-bright-fuchsia: #FF00FF;
 $header-daisy-yellow: #ffff00;
+$almost-black-gray: #595959;
 
 body {
-    background-color: $background-bright-fuchsia;
+
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -13,10 +14,26 @@ main {
 }
 
 h1 {
-    color: $header-daisy-yellow;
-    margin-left: 20px;
+    color: $almost-black-gray;
+    text-align: center;
 }
 
 .nav-wrapper {
   margin-left: 20px;
+}
+
+.home-options {
+  margin: 50px auto;
+}
+
+.home-option {
+  margin: 0 auto;
+  width: 200px;
+  height: 50px;
+}
+
+.home-option a {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
 }
